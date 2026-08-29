@@ -1,3 +1,4 @@
+// ─── Made by Mohammad — github.com/mohammad1390555 ───
 import { connect } from "cloudflare:sockets";
 
 /*
