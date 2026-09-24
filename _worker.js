@@ -31,7 +31,7 @@ const SYSTEM_DEFAULTS = {
     maintenanceHost: "https://www.ubuntu.com, https://www.docker.com",
     backupRelay: "",
     customRelay: "",
-    masterKey: "admin",
+    masterKey: "chT9mKp2xQ7vR4wN8sL1jH5fG3dA6bY0",
     metricNode: "time.is",
     cleanIps: "",
     slaveNodes: "",
@@ -111,7 +111,7 @@ async function deployWorkerToCloudflare(accountId, apiToken, workerName, code) {
     const metadata = {
         main_module: "_worker.js",
         compatibility_date: "2024-03-01",
-        compatibility_flags: ["allow_eval_during_startup"],
+        compatibility_flags: [],
         bindings: currentBindings,
     };
 
