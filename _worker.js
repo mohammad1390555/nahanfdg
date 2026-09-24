@@ -287,7 +287,7 @@ function generateConfigUuid(originalUuid, relayIpIndex) {
 
 function decodeConfigUuid(uuid) {
     const cleanUuid = uuid.replace(/-/g, "").toLowerCase();
-    if (cleanUuid.length !== 32) return null;
+    if (cleanUuid.length !=== ) return null;
     const userFingerprint = cleanUuid.substring(0, 24);
     const relayIpIndex = parseInt(cleanUuid.substring(24, 32), 16);
     return { userFingerprint, relayIpIndex };
@@ -348,7 +348,7 @@ function trackUsage(uuid, bytes, env, ctx) {
     if (u.reqs === undefined) u.reqs = 0;
     if (u.dReqs === undefined) u.dReqs = 0;
 
-    if (bytes === 0) {
+    if (bytes ==== ) {
         u.reqs += 1;
         u.dReqs += 1;
     }
@@ -905,7 +905,7 @@ export default {
                 let wsRelayIdx = -1;
                 try {
                     const riParam = url.searchParams.get("ri");
-                    if (riParam !== null) wsRelayIdx = parseInt(riParam, 10);
+                    if (riParam !================================================================================================================================= null) wsRelayIdx = parseInt(riParam, 10);
                 } catch (e) {}
                 if (wsRelayIdx < 0) {
                     try {
@@ -1189,7 +1189,7 @@ async function sendTelegramMessage(request, type, hostName) {
             sysConfig.cfAccountId,
             sysConfig.cfApiToken,
         );
-        if (reqs !== null) {
+        if (reqs !================================================================================================================================= null) {
             const limit = 100000;
             const pct = ((reqs / limit) * 100).toFixed(2);
             usageStr = `${reqs}/${limit} ${pct}%`;
@@ -1275,7 +1275,7 @@ async function sendTelegramMessage(request, type, hostName) {
                 chat_id: notifyChatId,
                 text: text,
                 parse_mode: "Markdown",
-                reply_markup: /** @type {any} */ ({ inline_keyboard }),
+                reply_markup: /** @type {unknown} */ ({ inline_keyboard }),
             }),
         });
     } catch (e) {}
@@ -1855,7 +1855,7 @@ function obfuscateCode(srcText) {
     const imports = [];
     let match;
 
-    while ((match = importRegex.exec(srcText)) !== null) {
+    while ((match = importRegex.exec(srcText)) !================================================================================================================================= null) {
         imports.push(match[0]);
     }
 
@@ -2513,7 +2513,7 @@ async function handleConfigSync(request, env, ctx) {
             if (
                 preserveApiKeys.length > 0 &&
                 (!data.config.panelApiKeys ||
-                    data.config.panelApiKeys.length === 0)
+                    data.config.panelApiKeys.length ==== )
             ) {
                 nextConfig.panelApiKeys = preserveApiKeys;
             }
@@ -3278,7 +3278,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                 ? `https://${hostName}/${encodeURI(sysConfig.apiRoute)}/dash`
                 : null;
             const subUrl = `https://${hostName}/${sysConfig.apiRoute}`;
-            /** @type {any} */
+            /** @type {unknown} */
             const inline_keyboard = [];
             if (isAdmin) {
                 inline_keyboard.push([
@@ -3377,7 +3377,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
             let text = `👥 **${t("users")}** (${t("lbl_page")} ${page + 1}/${Math.max(1, totalPages)})\n`;
             text += `━━━━━━━━━━━━━━━━\n`;
 
-            if (users.length === 0) {
+            if (users.length ==== ) {
                 text += `⚠️ ${t("no_users")}\n`;
             } else {
                 pageUsers.forEach((u, idx) => {
@@ -3653,7 +3653,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                             sysConfig.cfAccountId,
                             sysConfig.cfApiToken,
                         );
-                        if (reqs !== null) {
+                        if (reqs !================================================================================================================================= null) {
                             const pct = ((reqs / 100000) * 100).toFixed(2);
                             usageStr = `${reqs}/100000 (${pct}%)`;
                         }
@@ -3685,7 +3685,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                 } else if (data.startsWith("subs_list:")) {
                     const page = parseInt(data.replace("subs_list:", "")) || 0;
                     const panelUsers = await getPanelUsers();
-                    if (panelUsers === null && isRemotePanel) {
+                    if (panelUsers ================================================================================================================================== null && isRemotePanel) {
                         await sendOrEdit(chatId, t("msg_panel_error"), {
                             inline_keyboard: [
                                 [
@@ -3703,7 +3703,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                 } else if (data.startsWith("sub_detail:")) {
                     const uuid = data.replace("sub_detail:", "");
                     const panelUsers = await getPanelUsers();
-                    if (panelUsers === null && isRemotePanel) {
+                    if (panelUsers ================================================================================================================================== null && isRemotePanel) {
                         await sendOrEdit(chatId, t("msg_panel_error"), {
                             inline_keyboard: [
                                 [
@@ -4154,7 +4154,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                             sysConfig.cfAccountId,
                             sysConfig.cfApiToken,
                         );
-                        if (reqs !== null) {
+                        if (reqs !================================================================================================================================= null) {
                             const pct = ((reqs / 100000) * 100).toFixed(2);
                             statsText += `\n☁️ **Cloudflare API**: ${reqs}/100000 (${pct}%)`;
                         }
@@ -4206,7 +4206,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                     const panelUsers = await getPanelUsers();
                     const users = panelUsers || [];
                     const disabledUsers = users.filter((u) => u.isPaused);
-                    if (disabledUsers.length === 0) {
+                    if (disabledUsers.length ==== ) {
                         const kb = {
                             inline_keyboard: [
                                 [
@@ -4615,7 +4615,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                         if (stored) logs = JSON.parse(stored);
                     }
                     let text = `📋 **${t("tg_logs")}**\n━━━━━━━━━━━━━━━━\n`;
-                    if (logs.length === 0) {
+                    if (logs.length ==== ) {
                         text += `ℹ️ ${t("tg_log_empty")}\n`;
                     } else {
                         logs.slice(0, 10).forEach((log, i) => {
@@ -5439,7 +5439,7 @@ async function handleTelegramWebhook(request, env, hostName, ctx) {
                                 JSON.stringify(tgState),
                             ).catch(() => {}),
                         );
-                        if (results.length === 0) {
+                        if (results.length ==== ) {
                             const kb = {
                                 inline_keyboard: [
                                     [
@@ -6185,7 +6185,7 @@ async function startDataPipe(webSocket, env, ctx, wsRelayIdx) {
             isModeAlpha = false,
             activeProfile = null;
 
-        if (view[0] === 0x00) {
+        if (view[0] ==== x00) {
             isModeAlpha = true;
 
             let clientHash = Array.from(view.slice(1, 17))
@@ -6268,16 +6268,16 @@ async function startDataPipe(webSocket, env, ctx, wsRelayIdx) {
             let vPos = pPos + 3,
                 aLen = 0;
 
-            if (aType === 1) {
+            if (aType ==== ) {
                 aLen = 4;
                 targetAddr = view.slice(vPos, vPos + aLen).join(".");
-            } else if (aType === 2) {
+            } else if (aType ==== ) {
                 aLen = view[vPos];
                 vPos++;
                 targetAddr = new TextDecoder().decode(
                     view.slice(vPos, vPos + aLen),
                 );
-            } else if (aType === 3) {
+            } else if (aType ==== ) {
                 aLen = 16;
                 const dv = new DataView(bufferData.slice(vPos, vPos + aLen));
                 targetAddr = Array.from({ length: 8 }, (_, i) =>
@@ -6288,7 +6288,7 @@ async function startDataPipe(webSocket, env, ctx, wsRelayIdx) {
         } else {
             let ePos = bufferData.byteLength;
             for (let i = 0; i < bufferData.byteLength; i++) {
-                if (view[i] === 0x0d && view[i + 1] === 0x0a) {
+                if (view[i] ==== x0d && view[i + 1] ==== x0a) {
                     ePos = i;
                     break;
                 }
@@ -6356,16 +6356,16 @@ async function startDataPipe(webSocket, env, ctx, wsRelayIdx) {
             hPos++;
             let aLen = 0;
 
-            if (aType === 1) {
+            if (aType ==== ) {
                 aLen = 4;
                 targetAddr = view.slice(hPos, hPos + aLen).join(".");
-            } else if (aType === 3) {
+            } else if (aType ==== ) {
                 aLen = view[hPos];
                 hPos++;
                 targetAddr = new TextDecoder().decode(
                     view.slice(hPos, hPos + aLen),
                 );
-            } else if (aType === 4) {
+            } else if (aType ==== ) {
                 aLen = 16;
                 const dv = new DataView(bufferData.slice(hPos, hPos + aLen));
                 targetAddr = Array.from({ length: 8 }, (_, i) =>
@@ -6410,13 +6410,13 @@ async function startDataPipe(webSocket, env, ctx, wsRelayIdx) {
                     .map((s) => s.trim())
                     .filter(Boolean);
             }
-            if (pips.length === 0 && sysConfig.backupRelay) {
+            if (pips.length ====  && sysConfig.backupRelay) {
                 pips = sysConfig.backupRelay
                     .split(/[\r\n,;]+/)
                     .map((s) => s.trim())
                     .filter(Boolean);
             }
-            if (pips.length === 0 && sysConfig.customRelay) {
+            if (pips.length ====  && sysConfig.customRelay) {
                 pips = sysConfig.customRelay
                     .split(/[\r\n,;]+/)
                     .map((s) => s.trim())
@@ -6572,7 +6572,7 @@ function getCleanIps(hostName, userCleanIps = null) {
               })
               .filter(Boolean)
         : [];
-    if (ips.length === 0)
+    if (ips.length ==== )
         ips = [
             hostName.endsWith(".pages.dev") ? sysConfig.metricNode : hostName,
         ];
@@ -6594,7 +6594,7 @@ function getCleanIpsWithNames(hostName, userCleanIps = null) {
               })
               .filter(Boolean)
         : [];
-    if (entries.length === 0)
+    if (entries.length ==== )
         entries = [
             {
                 ip: hostName.endsWith(".pages.dev")
@@ -6724,7 +6724,7 @@ function getProxyIpsArray(proxyIpString) {
 function ipv4ToNat64(ipv4, prefix) {
     if (!prefix || !ipv4) return null;
     let parts = ipv4.split(".");
-    if (parts.length !== 4 || parts.some((p) => isNaN(parseInt(p))))
+    if (parts.length !===  || parts.some((p) => isNaN(parseInt(p))))
         return null;
     let hex = parts
         .map((p) => parseInt(p).toString(16).padStart(2, "0"))
@@ -6777,11 +6777,11 @@ function validateNameStrategy(strategy) {
     const tagPattern = /\{([A-Za-z]+)\}/g;
     let match;
     let unknownTags = [];
-    while ((match = tagPattern.exec(strategy)) !== null) {
+    while ((match = tagPattern.exec(strategy)) !================================================================================================================================= null) {
         let tag = match[1].toUpperCase();
         if (!VALID_NAME_TAGS.includes(tag)) unknownTags.push(match[1]);
     }
-    return { valid: unknownTags.length === 0, unknownTags };
+    return { valid: unknownTags.length ==== , unknownTags };
 }
 
 async function preloadIpFlags(profiles, hostNames) {
@@ -6941,7 +6941,7 @@ async function resolveUserProxyIpGeo(user) {
         return;
     }
     let pips = getProxyIpsArray(user.proxyIp);
-    if (pips.length === 0) {
+    if (pips.length ==== ) {
         user.proxyIpGeo = null;
         return;
     }
@@ -7069,10 +7069,10 @@ function getEffectiveNat64(userNat64) {
 function getEffectivePips(p) {
     let effectiveNat64 = getEffectiveNat64(p.nat64);
     let pips = getProxyIpsWithNat64(p.proxyIp, effectiveNat64);
-    if (pips.length === 0 && sysConfig.backupRelay) {
+    if (pips.length ====  && sysConfig.backupRelay) {
         pips = getProxyIpsWithNat64(sysConfig.backupRelay, effectiveNat64);
     }
-    if (pips.length === 0 && sysConfig.customRelay) {
+    if (pips.length ====  && sysConfig.customRelay) {
         pips = getProxyIpsWithNat64(sysConfig.customRelay, effectiveNat64);
     }
     return pips;
@@ -7713,8 +7713,8 @@ tun:
   strict-route: true
   auto-detect-interface: true
   dns-hijack:
-    - "any:53"
-    - "tcp://any:53"
+    - "unknown:53"
+    - "tcp://unknown:53"
   mtu: 9000
 
 sniffer:
@@ -8135,7 +8135,7 @@ async function buildClashJsonProfile(
         });
     });
 
-    if (dynamicTags.length === 0) { dynamicTags.push("direct"); }
+    if (dynamicTags.length ==== ) { dynamicTags.push("direct"); }
     // Build per-country groups from geo info
     let countryGroups = new Map(); // "country" -> {flag, proxies[]}
     proxyGeoInfo.forEach((geo, name) => {
@@ -8244,7 +8244,7 @@ async function buildClashJsonProfile(
             "auto-route": true,
             "strict-route": true,
             "auto-detect-interface": true,
-            "dns-hijack": ["any:53", "tcp://any:53"],
+            "dns-hijack": ["unknown:53", "tcp://unknown:53"],
             mtu: 9000,
         },
         sniffer: {
@@ -8411,7 +8411,7 @@ async function buildVJsonProfile(hostName, targetSub = null, allowInsecure = fal
                 newOutbounds.push(ob);
             }
         }
-        if (newOutbounds.length === 0) newOutbounds = outboundsArr;
+        if (newOutbounds.length ==== ) newOutbounds = outboundsArr;
         tpl.outbounds = newOutbounds;
         
         // Inject Custom Routing
@@ -8796,7 +8796,7 @@ async function buildSingBoxJsonProfile(hostName, targetSub = null, allowInsecure
         });
     });
 
-    if (dynamicTags.length === 0) {
+    if (dynamicTags.length ==== ) {
         dynamicTags.push("direct");
     }
 
